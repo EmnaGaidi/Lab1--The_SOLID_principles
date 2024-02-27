@@ -1,0 +1,17 @@
+@startuml
+interface Resource {
+    + void markSlotFree(int resourceId);
+    + void markSlotBusy(int resourceId);
+    + int findFreeSlot();
+}
+class ResourceAllocator {
+    - {static} INVALID_RESOURCE_ID  : int = -1
+    + int allocate(Resource resource)
+    + void free(Resource resource, int resourceId)
+}
+class SpaceResource
+class TimeResource
+SpaceResource ..|> Resource
+TimeResource ..|> Resource
+ResourceAllocator -->"uses" Resource
+@enduml

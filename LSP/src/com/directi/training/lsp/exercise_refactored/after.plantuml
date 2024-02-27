@@ -1,0 +1,21 @@
+@startuml
+interface Duck {
+    + void quack();
+    + void swim();
+}
+class NaturalDuck
+class ElectronicDuck {
+    - boolean _on : Boolean = false;
+    + void turnOn()
+    + void turnOff()
+}
+class Pool {
+    + void run()
+    - void quack(Duck... ducks)
+    - void swim(Duck... ducks)
+    + {static} void main(String[] args)
+}
+NaturalDuck ..|> Duck
+ElectronicDuck ..|> Duck
+Pool --"0..*" Duck
+@enduml

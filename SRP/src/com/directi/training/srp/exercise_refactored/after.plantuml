@@ -1,0 +1,31 @@
+@startuml
+Class Car {
+    - _id : String
+    - _model : String
+    - _brand : String
+    + String getId()
+    + String getModel()
+    + String getBrand()
+}
+Class CarCharacteristics {
+    + String getCarsNames(List<Car> _carsDb)
+}
+Class CarCompare {
+    + Car getBestCar(List<Car> _carsDb)
+}
+Class CarManager {
+    - DAO _DAO;
+    - CarCompare _CarCompare;
+    - CarCharacteristics _CarCharacteristics;
+    + String getCarsNames()
+    + Car getBestCar()
+}
+Class DAO {
+    + List<Car> getList()
+    + Car getFromDb(final String carId)
+}
+DAO *--"*" Car
+CarManager --> DAO
+CarManager --> CarCompare
+CarManager --> CarCharacteristics
+@end

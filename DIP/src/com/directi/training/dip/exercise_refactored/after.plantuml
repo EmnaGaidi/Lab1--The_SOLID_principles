@@ -1,0 +1,36 @@
+@startuml
+
+interface IRead{
+    + String read()
+}
+interface IWrite{
+    + int write(String val)
+}
+
+class MyDatabase implements IWrite{
+    - {static}  _data : Map<Integer, String>
+    - {static} _count : int
+}
+
+class File implements IWrite, IRead{
+}
+
+class Network implements IRead{
+}
+
+class EncodingModule{
+    + EncodingModule(IRead reader, IWrite writer)
+    + void encode()
+}
+
+class EncodingModuleClient{
+    + {static} void main(String[] args)
+}
+
+EncodingModuleClient --> EncodingModule
+EncodingModuleClient --> IRead
+EncodingModuleClient --> IWrite
+EncodingModule --> IWrite
+EncodingModule --> IRead
+
+@enduml
